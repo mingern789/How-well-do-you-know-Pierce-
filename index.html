@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How well do you know Pierce?</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="app">
+        <div v-if="testphase" class="quizbox">
+            <transition name="bounce">
+                <div class="column" v-if="toggle">
+                    <h2>{{questions[current].question}}</h2>
+                    <div style="margin-top: 50px;">
+                        <div v-for="(i,index) in questions[current].answers">
+                            <input type="radio" v-on:change="addpoint" v-model="models[current]" v-bind:value="i"
+                               v-bind:id="i" style="margin:15px;"><label v-bind:for="i">{{i}}</label>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+            <div>
+                <div class="buttonposition">
+                    <button v-if="current > 0" v-on:click="previouspage">Previous</button>
+                    <button v-if="current == 4" v-on:click="submit">Submit All</button>
+                    <button v-else v-on:click="nextpage">Next</button></br>
+                </div>
+            </div>
+        </div>
+        <transition name="slide-fade">
+        <div v-if="endphase" class="center column quizbox">
+            <div style="position: fixed;">
+                    <h1>You scored: <span v-bind:class="{fail:failed,pass:passed}">{{totalscore}}</span> / 5</h1>
+                    <h1 v-if="totalscore == 0">...Are you even trying?</h1>
+                    <h1 v-else-if="totalscore == 1">At least you tried.</h1>
+                    <h1 v-else-if="totalscore == 2">Ehh it's alright.</h1>
+                    <h1 v-else-if="totalscore == 3">Not bad!</h1>
+                    <h1 v-else-if="totalscore == 4">Ayy thats pretty good!</h1>
+                    <h1 v-else>You sure you didn't cheat?</h1>
+                    <button v-on:click="restart">Retry</button>
+                    </div>
+                </transition>
+            </div>
+</body>
+<script src="./script.js"></script>
+</html>
