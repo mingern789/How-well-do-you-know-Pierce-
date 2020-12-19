@@ -10,6 +10,7 @@
 </head>
 <body>
     <div id="app">
+        <transition name="slide-fade">
         <div v-if="testphase" class="quizbox">
             <transition name="bounce">
                 <div class="column" v-if="toggle">
@@ -30,6 +31,7 @@
                 </div>
             </div>
         </div>
+        </transition>
         <transition name="slide-fade">
         <div v-if="endphase" class="center column quizbox">
             <div style="position: fixed;">
