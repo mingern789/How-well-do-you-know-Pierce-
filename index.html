@@ -17,8 +17,8 @@
                     <h2>{{questions[current].question}}</h2>
                     <div style="margin-top: 50px;">
                         <div v-for="(i,index) in questions[current].answers">
-                            <input type="radio" v-on:change="addpoint" v-model="models[current]" v-bind:value="i"
-                               v-bind:id="i" style="margin:15px;"><label v-bind:for="i">{{i}}</label>
+                            <input type="radio" v-on:change="addpoint(i)" v-model="models[current]" v-bind:value="i"
+                               v-bind:id="i" style="margin:15px;"><label v-bind:for="i" v-bind:key="i">{{i}}</label>
                         </div>
                     </div>
                 </div>

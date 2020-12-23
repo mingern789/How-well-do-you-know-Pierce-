@@ -42,14 +42,16 @@ let app = new Vue({
             this.toggle = false
             setTimeout(this.delaynomoreprevious, 200)
         },
-        addpoint: function () {
+        addpoint: function (x) {
             if (this.models[this.current] == this.questions[this.current].answer && this.questions[this.current].localscore == 0) {
                 this.questions[this.current].localscore++;
                 this.totalscore++;
+                
             }
             else if (this.models[this.current] != this.questions[this.current].answer && this.questions[this.current].localscore != 0) {
                 this.questions[this.current].localscore--;
                 this.totalscore--;
+    
             }
         },
         submit: function () {
