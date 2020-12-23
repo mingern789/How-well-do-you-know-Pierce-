@@ -18,7 +18,7 @@
                     <div style="margin-top: 50px;">
                         <div v-for="(i,index) in questions[current].answers">
                             <input type="radio" v-on:change="addpoint(i)" v-model="models[current]" v-bind:value="i"
-                               v-bind:id="i" style="margin:15px;"><label v-bind:for="i" v-bind:key="i">{{i}}</label>
+                               v-bind:id="i" style="margin:15px;"><label v-bind:for="i" v-bind:key="i" v-bind:class="{fail:questions[current].isincorrect && reviewphase}">{{i}}</label>
                         </div>
                     </div>
                 </div>
@@ -33,8 +33,8 @@
         </div>
         </transition>
         <transition name="slide-fade">
-        <div v-if="endphase" class="center column quizbox">
-            <div style="position: fixed;">
+        <div v-if="endphase" class="quizbox">
+            <div>
                     <h1>You scored: <span v-bind:class="{fail:failed,pass:passed}">{{totalscore}}</span> / 5</h1>
                     <h1 v-if="totalscore == 0">...Are you even trying?</h1>
                     <h1 v-else-if="totalscore == 1">At least you tried.</h1>
@@ -42,6 +42,7 @@
                     <h1 v-else-if="totalscore == 3">Not bad!</h1>
                     <h1 v-else-if="totalscore == 4">Ayy thats pretty good!</h1>
                     <h1 v-else>You sure you didn't cheat?</h1>
+                    <button v-on:click="review">Review</button>
                     <button v-on:click="restart">Retry</button>
                     </div>
                 </transition>
